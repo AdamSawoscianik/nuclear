@@ -31,7 +31,7 @@ import {
 import {
   MusicbrainzArtist, MusicbrainzReleaseGroup
 } from '../../rest/Musicbrainz.types';
-import { release } from 'os';
+// import { release } from 'os';
 
 class MusicbrainzMetaProvider extends MetaProvider {
   lastfm: LastFmApi;
@@ -128,7 +128,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
   async fetchArtistAlbums(artistId: string): Promise<SearchResultsAlbum[]> {
     const artist = await getArtistReleases(artistId);
 
-    return Promise.all(artist['release-groups'].map(this.releaseGroupToSearchResult))
+    return Promise.all(artist['release-groups'].map(this.releaseGroupToSearchResult));
   }
 
   async fetchAlbumDetails(albumId: string, resourceUrl: string): Promise<AlbumDetails> {
@@ -148,7 +148,7 @@ class MusicbrainzMetaProvider extends MetaProvider {
       genres: _.map(releaseDetails.genres, 'name'),
       type: AlbumType.release,
       tracklist: _.flatMap(releaseDetails.media, medium => _.map(medium.tracks, track => {
-        let newtrack = new Track();
+        const newtrack = new Track();
         newtrack.ids[SearchResultsSource.Musicbrainz] = track.id;
         newtrack.artist = artistName;
         newtrack.title = track.title;
