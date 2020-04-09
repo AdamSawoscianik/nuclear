@@ -35,7 +35,7 @@ type BandcampSearchResult = {
   artist?: string;
 }
 
-const promisify = <T>(func: Function, arg: any): Promise<T> => new Promise((resolve, reject) => {
+const promisify = <T>(func: Function, arg: unknown): Promise<T> => new Promise((resolve, reject) => {
   func.apply(null, [arg, (err, result) => {
     if (err) {
       reject(err);

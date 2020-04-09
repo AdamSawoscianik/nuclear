@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export enum PlaybackStatus {
   PAUSED = 'PAUSED',
   PLAYING = 'PLAYING',

@@ -9,36 +9,35 @@ import { useTranslation } from 'react-i18next';
 const PlayerControls = ({ back, togglePlay, playing, loading, forward }) => {
   const { t } = useTranslation('player');
 
-  const handleMediaKeys = event => {
-    switch (event.key) {
-    case 'MediaPlayPause': {
-      if (togglePlay) {
-        togglePlay();
-      }
-      return;
-    }
-
-    case 'MediaTrackNext': {
-      if (forward) {
-        forward();
-      }
-      return;
-    }
-
-    case 'MediaTrackPrevious': {
-      if (back) {
-        back();
-      }
-      return;
-    }
-    }
-  };
-
   useEffect(() => {
+    const handleMediaKeys = event => {
+      switch (event.key) {
+      case 'MediaPlayPause': {
+        if (togglePlay) {
+          togglePlay();
+        }
+        return;
+      }
+  
+      case 'MediaTrackNext': {
+        if (forward) {
+          forward();
+        }
+        return;
+      }
+  
+      case 'MediaTrackPrevious': {
+        if (back) {
+          back();
+        }
+        return;
+      }
+      }
+    };
     document.addEventListener('keydown', handleMediaKeys);
     return () =>
       document.removeEventListener('keydown', handleMediaKeys);
-  }, [togglePlay, back, forward, handleMediaKeys]);
+  }, [togglePlay, back, forward]);
 
   return (
     <div className={styles.player_controls_container}>
